@@ -23,12 +23,12 @@ The platform eliminates manual dashboard configuration and implements a zero-tru
 
 ### 1. Infrastructure Provisioning (Terraform)
 Initialize the state engine and deploy the hardware fabric:
-```bash
+
 terraform init
 terraform validate
 terraform apply --auto-approve
 
-**### 2. Configuration & Application Injection (Ansible)**
+### 2. Configuration & Application Injection (Ansible)
 
 Generate the dynamic mapping (hosts.ini) leveraging secure proxy commands, and deploy the application environment:
 # Verify secure connectivity framework across the proxy boundary
