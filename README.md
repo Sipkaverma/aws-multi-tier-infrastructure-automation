@@ -24,28 +24,28 @@ The platform eliminates manual dashboard configuration and implements a zero-tru
 ### 1. Infrastructure Provisioning (Terraform)
 Initialize the state engine and deploy the hardware fabric:
 
-terraform init
-terraform validate
-terraform apply --auto-approve
+- terraform init
+- terraform validate
+- terraform apply --auto-approve
 
 ### 2. Configuration & Application Injection (Ansible)
 
 Generate the dynamic mapping (hosts.ini) leveraging secure proxy commands, and deploy the application environment:
 # Verify secure connectivity framework across the proxy boundary
-ANSIBLE_HOST_KEY_CHECKING=False ansible all -i hosts.ini -m ping
+- ANSIBLE_HOST_KEY_CHECKING=False ansible all -i hosts.ini -m ping
 
 # Execute the deployment directive
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini deploy-app.yml
+- ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini deploy-app.yml
 
-🔧 Engineering Insights & Live Troubleshooting
+# 🔧 Engineering Insights & Live Troubleshooting
 During the lifecycle testing phase, several cloud orchestration challenges were successfully resolved:
 
-Dynamic Ephemeral Path Alignment: Managed custom HashiCorp repository injections inside temporary AWS CloudShell container runtimes to preserve package integrity between session timeouts.
+1. Dynamic Ephemeral Path Alignment: Managed custom HashiCorp repository injections inside temporary AWS CloudShell container runtimes to preserve package integrity between session timeouts.
 
-Modern Compute Optimization: Identified and bypassed hardware tier compatibility restrictions related to older legacy instances (t2.micro) by dynamically modifying the hardware definition layers to leverage optimized t3.micro architectures within the live environment.
+2. Modern Compute Optimization: Identified and bypassed hardware tier compatibility restrictions related to older legacy instances (t2.micro) by dynamically modifying the hardware definition layers to leverage optimized t3.micro architectures within the live environment.
 
-Detached Proxy Management: Orchestrated an advanced Ansible ProxyCommand configuration pattern, achieving end-to-end runtime application deployment on a completely private subnet target without compromising root SSH credentials or copying private keys to edge hosts.
+3. Detached Proxy Management: Orchestrated an advanced Ansible ProxyCommand configuration pattern, achieving end-to-end runtime application deployment on a completely private subnet target without compromising root SSH credentials or copying private keys to edge hosts.
 
-🧹 Cost-Control & De-provisioning
+# 🧹 Cost-Control & De-provisioning
 To enforce corporate resource management and strict cloud cost governance, the entire infrastructure stack is systematically decommissioned using a single declarative lifecycle command:
--- terraform destroy --auto-approve
+- terraform destroy --auto-approve
