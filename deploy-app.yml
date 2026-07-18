@@ -1,0 +1,37 @@
+---
+- name: Configure and Deploy Web App on Private Server
+  hosts: app
+  become: yes
+  tasks:
+    - name: Install Apache Web Server (httpd)
+      dnf:
+        name: httpd
+        state: present
+
+    - name: Start and Enable Apache Service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Deploy Custom HTML Web Page
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>DevOps Pipeline Live</title>
+              <style>
+                  body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; background-color: #f4f4f9; }
+                  h1 { color: #232f3e; }
+                  p { color: #555; font-size: 1.2em; }
+                  .status { color: #46b749; font-weight: bold; }
+              </style>
+          </head>
+          <body>
+              <h1>Guru Ji, Infrastructure Completely Live!</h1>
+              <p>Automated Multi-Tier Cloud Deployment via Terraform & Ansible.</p>
+              <p class="status">Status: SUCCESSFUL</p>
+          </body>
+          </html>
