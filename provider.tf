@@ -8,7 +8,7 @@ terraform {
 }
 terraform {
   backend "s3" {
-    bucket         = "sipka-devops-terraform-state" # Apni unique bucket ka naam dalein
+    bucket         = "sipka-terraform-state-bucket" # Apni unique bucket ka naam dalein
     key            = "prod/terraform.tfstate"
     region         = "us-east-1"
   }
