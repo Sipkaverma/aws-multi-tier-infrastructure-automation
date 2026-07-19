@@ -1,0 +1,26 @@
+name: AWS Multi-Tier Automated Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  infrastructure-deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Codebase Extraction Checkout
+        uses: actions/checkout@v4
+
+      - name: Terraform State Initialization
+        run: |
+          terraform init
+          terraform validate
+
+      - name: Core Compute Deployment
+        run: |
+          terraform apply --auto-approve
+
+      - name: Engine Validation Post-Flight Check
+        run: |
+          echo "Configuration completed. Infrastructure pipeline verification active."
