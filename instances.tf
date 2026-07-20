@@ -70,8 +70,8 @@ resource "aws_security_group" "app_sg" {
 resource "aws_instance" "bastion" {
   ami                    = data.aws_ami.amazon_linux.id
   instance_type          = "t2.micro"
-  subnet_id              = aws_subnet.public_1.id
-  key_name               = aws_key_pair.deployer.key_name
+  subnet_id              = aws_subnet.public.id
+  key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [aws_security_group.bastion_sg.id]
 
   tags = {
